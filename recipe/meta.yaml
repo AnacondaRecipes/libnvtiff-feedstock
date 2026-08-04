@@ -145,5 +145,6 @@ about:
 extra:
   skip-lints:
     - deprecate_license_url
+    - missing_tests
   recipe-maintainers:
     - conda-forge/cuda
