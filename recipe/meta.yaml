@@ -135,11 +135,15 @@ about:
   license_file: LICENSE
   license: LicenseRef-NVIDIA-End-User-License-Agreement
   license_url: https://docs.nvidia.com/cuda/eula/index.html
+  license_family: OTHER
   summary: The NVIDIA nvTIFF development package.
   description: >-
     nvTIFF is a GPU accelerated TIFF(Tagged Image File Format) encode/decode library built on the CUDA platform. The library is supported on Volta+ GPU architectures.
   doc_url: https://docs.nvidia.com/cuda/nvtiff/
+  dev_url: https://docs.nvidia.com/cuda/nvtiff/
 
 extra:
+  skip-lints:
+    - deprecate_license_url
   recipe-maintainers:
     - conda-forge/cuda
