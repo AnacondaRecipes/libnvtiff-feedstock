@@ -1,6 +1,4 @@
 {% set version = "0.9.0.86" %}
-{% set arm_variant_type = arm_variant_type | default("sbsa") %}
-{% set cuda_compiler_version = cuda_compiler_version | default("None") %}
 
 package:
   name: libnvtiff-split
@@ -24,9 +22,8 @@ source:
 
 build:
   number: 0
-  # Anaconda: NVIDIA ships no windows-arm64 nvtiff redist (CUDA 12 and 13 both
-  # absent), so win-arm64 is skipped instead of failing on a missing source.
-  skip: true  # [osx or ppc64le or (win and not x86_64) or cuda_compiler_version in (None, "None")]
+  # Anaconda: NVIDIA ships no windows-arm64 nvtiff redist as of November 2026
+  skip: true  # [osx or cuda_compiler_version in (None, "None")]
   # skip: true  # [arm_variant_type == "tegra" and cuda_compiler_version != "12.9"]
 
 requirements:
@@ -145,17 +142,16 @@ about:
   license_file: LICENSE
   license: LicenseRef-NVIDIA-End-User-License-Agreement
   license_url: https://docs.nvidia.com/cuda/eula/index.html
-  # Anaconda: license_family and dev_url are required for main-channel metadata.
   license_family: OTHER
   summary: The NVIDIA nvTIFF development package.
   description: >-
-    nvTIFF is a GPU accelerated TIFF(Tagged Image File Format) encode/decode library built on the CUDA platform. The library is supported on Volta+ GPU architectures.
+    nvTIFF is a GPU accelerated TIFF(Tagged Image File Format) encode/decode library built on the CUDA platform.
+    The library is supported on Volta+ GPU architectures.
   doc_url: https://docs.nvidia.com/cuda/nvtiff/
   dev_url: https://docs.nvidia.com/cuda/nvtiff/
 
 extra:
   skip-lints:
-    # Anaconda: license_url is required for the NVIDIA EULA even though conda-build deprecates it.
     - deprecate_license_url
   recipe-maintainers:
     - conda-forge/cuda
